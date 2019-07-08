@@ -1,7 +1,10 @@
 <template>
     <nav>
         <v-toolbar flat app>
-            <v-toolbar-side-icon class="grey--text" @click="drawer = !drawer"></v-toolbar-side-icon>
+            <v-toolbar-side-icon
+                class="grey--text"
+                @click="drawer = !drawer"
+            ></v-toolbar-side-icon>
             <v-toolbar-title class="text-uppercase grey--text">
                 <span class="font-weight-light">Todo</span>
                 <span>Sprintify</span>
@@ -13,8 +16,8 @@
             </v-btn>
         </v-toolbar>
 
-        <v-navigation-drawer v-model="drawer" app class="indigo">
-            <p>test</p>
+        <v-navigation-drawer v-model="drawer" app class="primary">
+            <p class="error">test</p>
         </v-navigation-drawer>
     </nav>
 </template>
