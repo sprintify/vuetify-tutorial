@@ -10,7 +10,26 @@
                 <span>Sprintify</span>
             </v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn flat color="grey">
+
+            <!-- dropdown menu -->
+            <v-menu offset-y>
+                <v-btn flat slot="activator" color="grey" style="width: 135px;">
+                    <span style="letter-spacing: 2px;">Menu</span>
+                    <v-icon>expand_more</v-icon>
+                </v-btn>
+                <v-list style="width: 135px;">
+                    <v-list-tile
+                        v-for="link in links"
+                        :key="link.text"
+                        router
+                        :to="link.route"
+                    >
+                        <v-list-tile-title>{{ link.text }}</v-list-tile-title>
+                    </v-list-tile>
+                </v-list>
+            </v-menu>
+
+            <v-btn flat color="grey" style="letter-spacing: 2px;">
                 <span>Sign Out</span>
                 <v-icon right>exit_to_app</v-icon>
             </v-btn>
@@ -64,4 +83,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.v-menu__content {
+    box-shadow: 0px 4px 5px 2px rgba(0, 0, 0, 0.05);
+}
+</style>
