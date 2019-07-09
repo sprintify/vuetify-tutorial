@@ -13,7 +13,9 @@
                 >
                     <v-card flat class="text-xs-center ma-3">
                         <v-responsive class="pt-4">
-                            image goes here
+                            <v-avatar size="100" class="grey lighten-2">
+                                <img :src="person.avatar" />
+                            </v-avatar>
                         </v-responsive>
                         <v-card-text>
                             <div class="subheading">
@@ -28,7 +30,6 @@
                                 <v-icon small left>message</v-icon>
                                 <span>message</span>
                             </v-btn>
-
                         </v-card-actions>
                     </v-card>
                 </v-flex>
@@ -42,11 +43,31 @@ export default {
     data() {
         return {
             team: [
-                { name: 'The Net Ninja', role: 'Web developer' },
-                { name: 'Ryu', role: 'Graphic designer' },
-                { name: 'Chun Li', role: 'Web developer' },
-                { name: 'Gouken', role: 'Social media maverick' },
-                { name: 'Yoshi', role: 'Sales guru' }
+                {
+                    name: 'The Net Ninja',
+                    role: 'Web developer',
+                    avatar: '/avatar-1.png'
+                },
+                {
+                    name: 'Ryu',
+                    role: 'Graphic designer',
+                    avatar: '/avatar-2.png'
+                },
+                {
+                    name: 'Chun Li',
+                    role: 'Web developer',
+                    avatar: '/avatar-3.png'
+                },
+                {
+                    name: 'Gouken',
+                    role: 'Social media maverick',
+                    avatar: '/avatar-4.png'
+                },
+                {
+                    name: 'Yoshi',
+                    role: 'Sales guru',
+                    avatar: '/avatar-5.png'
+                }
             ]
         }
     }

@@ -18,6 +18,17 @@
 
         <v-navigation-drawer v-model="drawer" app class="primary">
             <v-list>
+                <v-layout column align-center>
+                    <v-flex class="mt-5">
+                        <v-avatar size="100">
+                            <img src="/avatar-1.png" />
+                        </v-avatar>
+                        <p class="white--text subheading mt-1">
+                            Sprintify Legend
+                        </p>
+                    </v-flex>
+                </v-layout>
+
                 <v-list-tile
                     v-for="link in links"
                     :key="link.text"
