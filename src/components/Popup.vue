@@ -1,30 +1,40 @@
 <template>
+    <!-- Modal + button -->
     <v-dialog max-width="600">
         <v-btn flat slot="activator" class="success">Add new project</v-btn>
+        <!-- Modal content inside -->
         <v-card>
             <v-card-title>
                 <h2>Add new project</h2>
             </v-card-title>
+            <!-- Form -->
             <v-card-text>
-                <v-form class="px-3">
+                <v-form class="px-3" ref="form">
+                    <!-- textfield title rules -->
                     <v-text-field
                         label="Title"
                         v-model="title"
                         prepend-icon="folder"
+                        :rules="inputRules"
                     ></v-text-field>
+                    <!-- textfield information -->
                     <v-textarea
                         label="Information"
                         v-model="content"
                         prepend-icon="edit"
+                        :rules="inputRules"
                     ></v-textarea>
                     <v-menu>
+                        <!-- textfield date obs!!!! method in value -->
                         <v-text-field
                             :value="formattedDate"
                             slot="activator"
                             label="Due date"
                             prepend-icon="date_range"
+                            :rules="inputRules"
                         >
                         </v-text-field>
+                        <!-- date picker with   date-fns  -->
                         <v-date-picker v-model="due"></v-date-picker>
                     </v-menu>
                     <v-spacer></v-spacer>
@@ -44,12 +54,15 @@ export default {
         return {
             title: '',
             content: '',
-            due: null
+            due: null,
+            inputRules: [v => v.length >= 3 || 'Minimun length is 3 characters']
         }
     },
     methods: {
         submit() {
-            console.log(this.title, this.content)
+            if (this.$refs.form.validate()) {
+                console.log(this.title, this.content)
+            }
         }
     },
     computed: {
