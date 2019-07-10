@@ -74,22 +74,22 @@
 <script>
 import Popup from './Popup'
 export default {
-	components: { Popup },
-	data () {
-		return {
-			drawer: false,
-			links: [
-				{ icon: 'dashboard', text: 'Dashboard', route: '/' },
-				{ icon: 'folder', text: 'My Projects', route: '/projects' },
-				{ icon: 'person', text: 'Team', route: '/team' }
-			]
-		}
-	}
+    components: { Popup },
+    data() {
+        return {
+            drawer: false,
+            links: [
+                { icon: 'dashboard', text: 'Dashboard', route: '/' },
+                { icon: 'folder', text: 'My Projects', route: '/projects' },
+                { icon: 'person', text: 'Team', route: '/team' }
+            ]
+        }
+    }
 }
 </script>
 
 <style>
 .v-menu__content {
-	box-shadow: 0px 4px 5px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 4px 5px 2px rgba(0, 0, 0, 0.05);
 }
 </style>
