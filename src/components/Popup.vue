@@ -1,6 +1,6 @@
 <template>
     <!-- Modal + button -->
-    <v-dialog max-width="600">
+    <v-dialog max-width="600" v-model="dialog">
         <v-btn flat slot="activator" class="success">Add new project</v-btn>
         <!-- Modal content inside -->
         <v-card>
@@ -38,7 +38,12 @@
                         <v-date-picker v-model="due"></v-date-picker>
                     </v-menu>
                     <v-spacer></v-spacer>
-                    <v-btn flat class="success mx-0 mt-3" @click="submit">
+                    <v-btn
+                        flat
+                        class="success mx-0 mt-3"
+                        @click="submit"
+                        :loading="loading"
+                    >
                         Add project
                     </v-btn>
                 </v-form>
@@ -56,12 +61,18 @@ export default {
             title: '',
             content: '',
             due: null,
-            inputRules: [v => v.length >= 3 || 'Minimun length is 3 characters']
+            inputRules: [
+                v => v.length >= 3 || 'Minimun length is 3 characters'
+            ],
+            loading: false,
+            dialog: false
         }
     },
     methods: {
         submit() {
             if (this.$refs.form.validate()) {
+                this.loading = true
+
                 const project = {
                     title: this.title,
                     content: this.content,
@@ -72,7 +83,8 @@ export default {
                 db.collection('movies')
                     .add(project)
                     .then(() => {
-                        console.log('added to db')
+                        this.loading = false
+                        this.dialog = false
                     })
             }
         }
