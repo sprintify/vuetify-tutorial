@@ -1,7 +1,7 @@
 <template>
     <nav>
         <v-snackbar v-model="snackbar" :timeout="4000" top color="success">
-            <span>Awesome! You added a new project.</span>
+            <span>Awesome! You added a new movie.</span>
             <v-btn flat color="white" @click="snackbar = false">Close</v-btn>
         </v-snackbar>
 
@@ -52,7 +52,7 @@
                         </p>
                     </v-flex>
                     <v-flex class="mt-4 mb-3">
-                        <Popup @projectAdded="snackbar = true" />
+                        <Popup @movieAdded="snackbar = true" />
                     </v-flex>
                 </v-layout>
 
@@ -85,7 +85,7 @@ export default {
             drawer: false,
             links: [
                 { icon: 'dashboard', text: 'Dashboard', route: '/' },
-                { icon: 'folder', text: 'My Projects', route: '/projects' },
+                { icon: 'folder', text: 'My Movies', route: '/movies' },
                 { icon: 'person', text: 'Team', route: '/team' }
             ],
             snackbar: false

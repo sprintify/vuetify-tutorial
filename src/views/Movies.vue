@@ -1,22 +1,22 @@
 <template>
-    <div class="projects">
+    <div class="movies">
         <h1 class="subheading grey--text">Projects</h1>
 
         <v-container class="my-5">
             <v-expansion-panel>
                 <v-expansion-panel-content
-                    v-for="project in myProjects"
+                    v-for="project in myMovies"
                     :key="project.title"
                 >
                     <div slot="header">
-                        {{ project.title }}
+                        {{ movie.title }}
                     </div>
                     <v-card>
                         <v-card-text class="grey--text px-4">
                             <div class="font-weight-bold">
-                                due by {{ project.due }}
+                                due by {{ movie.due }}
                             </div>
-                            <div>{{ project.content }}</div>
+                            <div>{{ movie.content }}</div>
                         </v-card-text>
                     </v-card>
                 </v-expansion-panel-content>
@@ -29,7 +29,7 @@
 export default {
     data() {
         return {
-            projects: [
+            movies: [
                 {
                     title: 'Design a new website',
                     person: 'The Net Ninja',
@@ -74,9 +74,9 @@ export default {
         }
     },
     computed: {
-        myProjects() {
-            return this.projects.filter(project => {
-                return project.person === 'The Net Ninja'
+        myMovies() {
+            return this.movies.filter(movie => {
+                return movie.person === 'The Net Ninja'
             })
         }
     }

@@ -1,11 +1,11 @@
 <template>
     <!-- Modal + button -->
     <v-dialog max-width="600" v-model="dialog">
-        <v-btn flat slot="activator" class="success">Add new project</v-btn>
+        <v-btn flat slot="activator" class="success">Add new movie</v-btn>
         <!-- Modal content inside -->
         <v-card>
             <v-card-title>
-                <h2>Add new project</h2>
+                <h2>Add new movie</h2>
             </v-card-title>
             <!-- Form -->
             <v-card-text>
@@ -44,7 +44,7 @@
                         @click="submit"
                         :loading="loading"
                     >
-                        Add project
+                        Add movie
                     </v-btn>
                 </v-form>
             </v-card-text>
@@ -73,7 +73,7 @@ export default {
             if (this.$refs.form.validate()) {
                 this.loading = true
 
-                const project = {
+                const movie = {
                     title: this.title,
                     content: this.content,
                     due: format(this.due, 'Do MMM YYYY'),
@@ -81,11 +81,11 @@ export default {
                     status: 'ongoing'
                 }
                 db.collection('movies')
-                    .add(project)
+                    .add(movie)
                     .then(() => {
                         this.loading = false
                         this.dialog = false
-                        this.$emit('projectAdded')
+                        this.$emit('movieAdded')
                     })
             }
         }
