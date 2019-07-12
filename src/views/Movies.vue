@@ -1,12 +1,12 @@
 <template>
     <div class="movies">
-        <h1 class="subheading grey--text">Projects</h1>
+        <h1 class="subheading grey--text">Movies</h1>
 
         <v-container class="my-5">
             <v-expansion-panel>
                 <v-expansion-panel-content
-                    v-for="project in myMovies"
-                    :key="project.title"
+                    v-for="movie in myMovies"
+                    :key="movie.title"
                 >
                     <div slot="header">
                         {{ movie.title }}
@@ -26,51 +26,11 @@
 </template>
 
 <script>
+import db from '@/fb'
 export default {
     data() {
         return {
-            movies: [
-                {
-                    title: 'Design a new website',
-                    person: 'The Net Ninja',
-                    due: '1st Jan 2019',
-                    status: 'ongoing',
-                    content:
-                        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'
-                },
-                {
-                    title: 'Code up the homepage',
-                    person: 'Chun Li',
-                    due: '10th Jan 2019',
-                    status: 'complete',
-                    content:
-                        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'
-                },
-                {
-                    title: 'Design video thumbnails',
-                    person: 'Ryu',
-                    due: '20th Dec 2018',
-                    status: 'complete',
-                    content:
-                        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'
-                },
-                {
-                    title: 'Create a community forum',
-                    person: 'Gouken',
-                    due: '20th Oct 2018',
-                    status: 'overdue',
-                    content:
-                        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'
-                },
-                {
-                    title: 'Vuetify for programmers',
-                    person: 'The Net Ninja',
-                    due: '9th July 2019',
-                    status: 'complete',
-                    content:
-                        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'
-                }
-            ]
+            movies: []
         }
     },
     computed: {
@@ -79,6 +39,20 @@ export default {
                 return movie.person === 'The Net Ninja'
             })
         }
+    },
+    created() {
+        db.collection('movies').onSnapshot(res => {
+            const changes = res.docChanges()
+
+            changes.forEach(change => {
+                if (change.type === 'added') {
+                    this.movies.push({
+                        ...change.doc.data(),
+                        id: change.doc.id
+                    })
+                }
+            })
+        })
     }
 }
 </script>
